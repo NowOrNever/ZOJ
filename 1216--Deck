@@ -1,0 +1,14 @@
+#include <cstdio>  
+  
+int main()  
+{  
+    int n;  
+    printf("# Cards  Overhang\n");  
+    while(scanf("%d",&n) != EOF)  
+    {  
+        double sum = 0.0;  
+        for(int i=1;i<=n;i++)  
+            sum += 1.0/(2*i);  
+        printf("%5d     %.3lf\n",n,sum);  
+    }  
+}  
