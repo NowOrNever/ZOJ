@@ -1,0 +1,23 @@
+#include <iostream>
+#include <cstdio>
+#include <math.h>
+using namespace std;
+const double PI=3.1415927;
+int main()
+{
+    int n,i=1;
+    int year;
+    double x,y,area,radius;
+    scanf("%d",&n);
+    while(n--)
+    {
+        scanf("%lf%lf",&x,&y);
+        radius=x*x+y*y;
+        area=PI*radius/2;
+        year=(int)ceil(area/50.0);
+        printf("Property %d: This property will begin eroding in year %d.\n",i++,year);
+        
+    }
+    printf("END OF OUTPUT.\n");
+    return 0;
+}
