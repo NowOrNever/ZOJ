@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+struct color
+{
+    int R,G,B;
+}map[16];
+int main()
+{
+    int i;
+    for(i=0;i<16;i++)
+    scanf("%d%d%d",&map[i].R,&map[i].G,&map[i].B);
+    color c;
+    while(scanf("%d%d%d",&c.R,&c.G,&c.B)&&(c.R>=0))
+    {
+        int index=0;
+        int min=65535;
+        for(i=0;i<16;i++)
+        {
+            int d=(map[i].R-c.R)*(map[i].R-c.R)+
+            (map[i].G-c.G)*(map[i].G-c.G)+
+            (map[i].B-c.B)*(map[i].B-c.B);
+            if(min>d)
+            {
+                min=d;
+                index=i;
+            }
+        } 
+        printf("(%d,%d,%d) maps to (%d,%d,%d)\n",c.R,c.G,c.B,map[index].R,
+        map[index].G,map[index].B);
+    }
+    return 0;
+}
