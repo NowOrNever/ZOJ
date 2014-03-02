@@ -1,0 +1,23 @@
+#include<cstdio>  
+  
+int main() {  
+    char str[2222];  
+    while(scanf("%s", str), str[0] != '0') {  
+        int sum = 0;  
+        int n = 0;  
+        int i = 0;  
+        while(str[i]) {  
+            n = n + str[i++] - '0';  
+        }  
+        while(n > 0) {  
+            sum += n % 10;  
+            n = n / 10;  
+            if(n == 0 && sum > 9) {  
+                n = sum;  
+                sum = 0;  
+            }  
+        }  
+        printf("%d\n", sum);  
+    }  
+    return 0;  
+}  
