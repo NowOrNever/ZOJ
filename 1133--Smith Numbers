@@ -1,0 +1,52 @@
+
+#include<stdio.h>
+#include<math.h>
+
+int sumdigit(int n)
+{
+    int sum = 0;
+    while(n != 0)
+    {
+        sum += n%10;
+        n /= 10;
+    }
+    return sum;
+}
+
+int Prime(int n)    //判断素数因子的位数之和，这是关键。
+{
+    int i, tn=n, sum =0;
+    
+    for( i = 2; i*i <= n; i++ )
+    {
+            while(n%i == 0)
+            {
+                sum += sumdigit(i);
+                n /= i;
+            }
+    }
+    if(tn == n)
+        return -1;
+    if(n != 1)
+        sum += sumdigit(n);
+    return sum;
+}
+
+int main()
+{
+    int n, i;
+    
+    while(scanf("%d", &n) != EOF)
+    {
+       if (n == 0) break;
+       for(i=n+1; ; i++)
+       {
+          if (sumdigit(i) == Prime(i))
+          {
+             printf("%d\n",i);
+             break;
+          }
+       }
+    }
+    return 0;             
+}
