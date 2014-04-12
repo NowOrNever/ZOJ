@@ -1,0 +1,128 @@
+/*
+by NowOrNever(520Eos@gmail.com)
+由于下午有事，也就没有玩，第二天凌晨以后补上啦！
+*/
+===
+ZOJ--A.Pokemon Master
+/*
+    签到题，比较两个数组和的大小，只是由于读题不仔细，第一次忽略了相等的情况要输出"Draw"；
+*/
+
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	int T,n,m,x,y;
+	int a[6],b[6];
+	cin>>T;
+	while(T--){
+		cin>>n>>m;
+		x = 0,y = 0;
+		for(int i = 0;i < n;i++) {
+			cin>>a[i];
+			x += a[i];
+		}
+		for(int j = 0;j < m;j++){
+			cin>>b[j];
+			y += b[j];
+		}
+		if(x == y) cout<<"Draw"<<endl;
+		else x > y ? cout<<"Calem"<<endl:cout<<"Serena"<<endl;
+	}
+	return 0;
+}
+
+ZOJ--C.Talented Chef
+/*
+    签到题，简单的贪心法即可！
+*/
+
+#include<iostream>
+#include<algorithm>
+using namespace std;
+int a[40000];
+int main()
+{
+	int T,n,m,sum,max;
+	cin>>T;
+	while(T--){
+		cin>>n>>m;
+		sum = 0,max = 0;
+		for(int i = 0;i < n;i++){
+			cin>>a[i];
+			if(max < a[i]) max = a[i];
+			sum += a[i];
+		}
+		if( n < m) cout<<max<<endl;
+		else {
+			int h = sum / m;
+			if(sum % m) h++;
+			if(h < max) max = h;
+			cout<<h<<endl;
+		}
+			
+	}
+	
+	return 0;
+}
+
+ZOJ--G.Ternary Calculation
+/*
+    签到题，很纯粹的模拟题。
+*/
+
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+	int T,sum,ans;
+	int a[4];
+	char o[3];
+	cin>>T;
+	while(T--){
+		cin>>a[0]>>o[0]>>a[1]>>o[1]>>a[2];
+		if((o[0] == '*' || o[0] == '/' || o[0] == '%') && (o[1] == '*' || o[1] == '/' || o[1] == '%')){
+			sum = 0;
+			if(o[0]=='*') sum = a[0] * a[1];
+            if(o[0]=='/') sum = a[0] / a[1];
+            if(o[0]=='%') sum = a[0] % a[1];
+
+            if(o[1]=='*') ans = sum * a[2];
+            if(o[1]=='/') ans = sum / a[2];
+            if(o[1]=='%') ans = sum % a[2];
+		}
+		else if((o[0] == '*' || o[0] == '/' || o[0] == '%') && (o[1] == '+' || o[1] == '-')){
+			sum = 0;
+            if(o[0]=='*') sum = a[0] * a[1];
+            if(o[0]=='/') sum = a[0] / a[1];
+            if(o[0]=='%') sum = a[0] % a[1];
+            
+            if(o[1]=='+') ans = sum + a[2];
+            if(o[1]=='-') ans = sum - a[2];
+		}
+		else if((o[0] == '+' || o[0] == '-') && (o[1] == '*' || o[1] == '/' || o[1] == '%')){
+			sum = 0;
+			if(o[1]=='*') sum = a[1] * a[2];
+            if(o[1]=='/') sum = a[1] / a[2];
+            if(o[1]=='%') sum = a[1] % a[2];
+            
+            if(o[0]=='+') ans = a[0] + sum;
+            if(o[0]=='-') ans = a[0] - sum;
+		}
+		else if((o[0] == '+' || o[0] == '-') && (o[1] == '+' || o[1] == '-')){
+			sum = 0;
+			if(o[0]=='+') sum = a[0] + a[1];
+            if(o[0]=='-') sum = a[0] - a[1];
+            
+            if(o[1]=='+') ans = sum + a[2];
+            if(o[1]=='-') ans = sum - a[2];
+		}
+		cout<<ans<<endl;
+	}
+	return 0;
+}
+
